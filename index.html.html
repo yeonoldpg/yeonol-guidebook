@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>여놀 재학생 가이드북</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --navy: #031b4a;
+  --navy2: #0a2d6e;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --blue-soft: #eff6ff;
+  --blue-mid: #bfdbfe;
+  --gold: #c9a84c;
+  --gold-soft: #fdf5e4;
+  --green: #059669;
+  --green-soft: #ecfdf5;
+  --red: #dc2626;
+  --red-soft: #fef2f2;
+  --orange: #d97706;
+  --orange-soft: #fffbeb;
+  --gray: #f8fafc;
+  --gray2: #f1f5f9;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text2: #475569;
+  --text3: #94a3b8;
+  --sidebar-w: 260px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--gray2);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ══════════════════════════
+   SIDEBAR
+══════════════════════════ */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+.sidebar-header {
+  padding: 28px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+.sidebar-logo {
+  font-size: 22px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.sidebar-logo span { color: #7ab3f5; }
+.sidebar-tagline {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+}
+.sidebar-ver {
+  display: inline-block;
+  margin-top: 8px;
+  background: rgba(201,168,76,0.15);
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+}
+
+.sidebar-nav {
+  padding: 12px 0;
+  flex: 1;
+}
+.nav-group-label {
+  padding: 16px 20px 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+  color: rgba(255,255,255,0.55);
+  font-size: 13px;
+  font-weight: 500;
+  position: relative;
+}
+.nav-item:hover {
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.9);
+}
+.nav-item.active {
+  background: rgba(59,130,246,0.15);
+  border-left-color: var(--blue-light);
+  color: #fff;
+}
+.nav-icon {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.nav-badge {
+  margin-left: auto;
+  background: var(--red);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  line-height: 1.7;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════
+   MAIN CONTENT
+══════════════════════════ */
+.main {
+  margin-left: var(--sidebar-w);
+  min-height: 100vh;
+}
+
+/* TOP BAR */
+.topbar {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 50;
+}
+.topbar-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+}
+.topbar-title span {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text3);
+  margin-left: 8px;
+}
+.topbar-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gray2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: text;
+  font-size: 12px;
+  color: var(--text3);
+  min-width: 200px;
+}
+
+/* SECTIONS */
+.section {
+  display: none;
+  padding: 36px 40px 60px;
+  max-width: 900px;
+  animation: fadeIn 0.25s ease;
+}
+.section.active { display: block; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  border-radius: 16px;
+  padding: 32px 36px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.section-hero::after {
+  content: '';
+  position: absolute;
+  right: -20px; top: -20px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hero-title {
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.hero-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+}
+
+h2.sh {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 28px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--navy);
+  line-height: 1.3;
+}
+h3.sh3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 18px 0 8px;
+}
+
+/* BOXES */
+.box {
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.box-info { background: var(--blue-soft); border: 1px solid var(--blue-mid); border-left: 4px solid var(--blue); }
+.box-info strong { color: #1e40af; }
+.box-warn { background: var(--orange-soft); border: 1px solid #fcd34d; border-left: 4px solid var(--orange); }
+.box-warn strong { color: #92400e; }
+.box-danger { background: var(--red-soft); border: 1px solid #fca5a5; border-left: 4px solid var(--red); }
+.box-danger strong { color: #991b1b; }
+.box-green { background: var(--green-soft); border: 1px solid #6ee7b7; border-left: 4px solid var(--green); }
+.box-green strong { color: #065f46; }
+.box-dark { background: var(--navy); color: rgba(255,255,255,0.8); border-radius: 10px; padding: 16px 20px; }
+.box-dark strong { color: #fff; }
+
+/* GRID */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0; }
+
+/* CARDS */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+.card-header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+
+/* LISTS */
+ul.dot, ul.chk, ul.x, ul.w { list-style: none; padding: 0; }
+ul.dot li, ul.chk li, ul.x li, ul.w li {
+  padding: 4px 0 4px 22px;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text2);
+}
+ul.dot li::before { content: '·'; position: absolute; left: 6px; color: var(--blue); font-size: 18px; font-weight: 900; top: -1px; }
+ul.chk li::before { content: '✓'; position: absolute; left: 1px; color: var(--green); font-size: 12px; top: 5px; font-weight: 700; }
+ul.x li::before { content: '✕'; position: absolute; left: 2px; color: var(--red); font-size: 11px; top: 6px; font-weight: 700; }
+ul.w li::before { content: '!'; position: absolute; left: 4px; color: var(--orange); font-size: 11px; top: 6px; font-weight: 900; }
+ul.dot li strong, ul.chk li strong { color: var(--navy); }
+
+/* TABLE */
+.tbl { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 13px; border-radius: 10px; overflow: hidden; }
+.tbl th { background: var(--navy); color: #fff; padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; }
+.tbl td { padding: 9px 12px; border-bottom: 1px solid var(--border); line-height: 1.5; vertical-align: top; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: var(--gray); }
+.tbl td strong { color: var(--navy); }
+
+/* CHIPS */
+.chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.chip-navy { background: var(--navy); color: #fff; }
+.chip-blue { background: var(--blue-soft); color: var(--blue); border: 1px solid var(--blue-mid); }
+.chip-red { background: var(--red-soft); color: var(--red); border: 1px solid #fca5a5; }
+.chip-green { background: var(--green-soft); color: var(--green); border: 1px solid #6ee7b7; }
+.chip-orange { background: var(--orange-soft); color: var(--orange); border: 1px solid #fcd34d; }
+.chip-gold { background: var(--gold-soft); color: #92400e; border: 1px solid #f5d090; }
+
+/* TERM GRID */
+.term-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 12px 0;
+}
+.term-item {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.term-name {
+  background: var(--navy);
+  color: #fff;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.term-desc {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.6;
+  background: var(--gray);
+}
+
+/* PROCESS FLOW */
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0;
+}
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.flow-step-box {
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  flex: 1;
+}
+.flow-step-box.dark { background: var(--navy); color: #fff; font-weight: 700; }
+.flow-step-box.light { background: var(--blue-soft); border: 1px solid var(--blue-mid); color: var(--navy); }
+.flow-step-box.finish { background: var(--green); color: #fff; font-weight: 700; }
+.flow-arrow { color: var(--text3); font-size: 16px; text-align: center; padding: 0 10px; }
+
+/* SANCTION */
+.sanction {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.sanction:last-child { border-bottom: none; }
+.s-badge {
+  min-width: 72px;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.s1 { background: var(--orange-soft); color: var(--orange); border: 1px solid #fcd34d; }
+.s2 { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.s3 { background: var(--red-soft); color: var(--red); border: 1px solid #fca5a5; }
+.s4 { background: var(--red); color: #fff; }
+.s5 { background: var(--navy); color: #fff; }
+.s-info h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.s-info p { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+/* FAQ */
+.faq { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin: 8px 0; }
+.faq-q {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--blue-soft);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  transition: background 0.15s;
+  user-select: none;
+}
+.faq-q:hover { background: #dbeafe; }
+.faq-q::before { content: 'Q'; color: var(--blue); font-weight: 900; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+.faq-q .faq-arrow { margin-left: auto; color: var(--text3); font-size: 11px; transition: transform 0.2s; flex-shrink: 0; }
+.faq-q.open .faq-arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.8;
+  background: #fff;
+}
+.faq-a.open { display: flex; gap: 10px; align-items: flex-start; }
+.faq-a::before { content: 'A'; color: var(--green); font-weight: 900; flex-shrink: 0; font-size: 13px; margin-top: 2px; }
+
+/* SUMMARY PAGE */
+.sum-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+.sum-box {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.sum-head {
+  background: var(--navy);
+  color: #fff;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.sum-body { padding: 12px 14px; }
+.sum-body li {
+  list-style: none;
+  font-size: 12px;
+  color: var(--text2);
+  padding: 3px 0 3px 14px;
+  position: relative;
+  line-height: 1.6;
+}
+.sum-body li::before { content: '·'; position: absolute; left: 4px; color: var(--blue); font-weight: 900; font-size: 16px; top: -1px; }
+
+/* HIERARCHY BOXES */
+.hier {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0;
+}
+.hier-box {
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.hier-box.h1 { background: var(--navy); }
+.hier-box.h2 { background: var(--blue-soft); border: 1px solid var(--blue-mid); }
+.hier-box.h3 { background: var(--gray); border: 1px solid var(--border); }
+.hier-num { font-size: 10px; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+.hier-box.h1 .hier-num { color: var(--gold); }
+.hier-box.h2 .hier-num { color: var(--blue); }
+.hier-box.h3 .hier-num { color: var(--text3); }
+.hier-name { font-size: 13px; font-weight: 700; }
+.hier-box.h1 .hier-name { color: #fff; }
+.hier-box.h2 .hier-name { color: var(--navy); }
+.hier-box.h3 .hier-name { color: var(--text2); }
+.hier-desc { font-size: 10px; margin-top: 3px; }
+.hier-box.h1 .hier-desc { color: rgba(255,255,255,0.5); }
+.hier-box.h2 .hier-desc { color: var(--blue); }
+.hier-box.h3 .hier-desc { color: var(--text3); }
+
+/* PROGRAM CARDS */
+.prog-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  border-top: 4px solid var(--blue);
+}
+.prog-card h4 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.prog-card p { font-size: 12px; color: var(--text2); line-height: 1.7; }
+
+/* CONTACT CARDS */
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 8px 0;
+}
+.contact-icon {
+  width: 40px; height: 40px;
+  background: var(--blue-soft);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.contact-info h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+.contact-info p { font-size: 11px; color: var(--text3); }
+.contact-dest { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--blue); flex-shrink: 0; }
+
+small { font-size: 11px; color: var(--text3); }
+
+/* ══════ HOME ══════ */
+.home-notice {
+  background: linear-gradient(135deg, #031b4a, #0a2d6e);
+  border-radius: 14px;
+  padding: 24px 28px;
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.home-notice::before {
+  content: '📌';
+  font-size: 24px;
+  position: absolute;
+  right: 24px; top: 24px;
+  opacity: 0.3;
+}
+.home-notice strong { color: #fff; font-size: 14px; }
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+}
+.quick-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.quick-card:hover {
+  border-color: var(--blue);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.1);
+  transform: translateY(-2px);
+}
+.quick-card .q-icon { font-size: 22px; margin-bottom: 8px; }
+.quick-card .q-label { font-size: 12px; font-weight: 700; color: var(--navy); }
+.quick-card .q-sub { font-size: 10px; color: var(--text3); margin-top: 2px; }
+
+/* ══════ RESPONSIVE ══════ */
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar { transform: translateX(-260px); width: 260px; transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .topbar { padding: 0 16px; }
+  .section { padding: 20px 16px 40px; }
+  .g2, .g3, .term-grid, .sum-grid, .quick-grid, .hier { grid-template-columns: 1fr; }
+  .menu-btn { display: flex !important; }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 90; }
+  .overlay.open { display: block; }
+}
+
+.menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  background: var(--navy);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.menu-btn span { width: 16px; height: 2px; background: #fff; border-radius: 1px; }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeMobile()"></div>
+
+<!-- ══════════════════════ SIDEBAR ══════════════════════ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">여놀<span>대학</span></div>
+    <div class="sidebar-tagline">YEONOL STUDENT GUIDE</div>
+    <div class="sidebar-ver">ver 1.0 · 2026.03</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-group-label">시작하기</div>
+    <div class="nav-item active" onclick="show('home')">
+      <span class="nav-icon">🏠</span> 홈 · 안내문
+    </div>
+
+    <div class="nav-group-label">기본 안내</div>
+    <div class="nav-item" onclick="show('intro')">
+      <span class="nav-icon">🌿</span> 여놀 소개 &amp; 용어
+    </div>
+    <div class="nav-item" onclick="show('space')">
+      <span class="nav-icon">💬</span> 공간 이용 안내
+    </div>
+
+    <div class="nav-group-label">규칙 &amp; 수칙</div>
+    <div class="nav-item" onclick="show('rules')">
+      <span class="nav-icon">📋</span> 기본 이용 수칙
+    </div>
+    <div class="nav-item" onclick="show('events')">
+      <span class="nav-icon">🎉</span> 행사 · 벙 · 유료 프로그램
+    </div>
+    <div class="nav-item" onclick="show('cancel')">
+      <span class="nav-icon">⏰</span> 취소 · 노쇼 · 벌금
+    </div>
+
+    <div class="nav-group-label">혜택 &amp; 지원</div>
+    <div class="nav-item" onclick="show('nol')">
+      <span class="nav-icon">💛</span> NOL 크레딧
+    </div>
+
+    <div class="nav-group-label">도움말</div>
+    <div class="nav-item" onclick="show('contact')">
+      <span class="nav-icon">📞</span> 신고 · 문의 · 민원
+    </div>
+    <div class="nav-item" onclick="show('sanction')">
+      <span class="nav-icon">⚖️</span> 제재 기준
+    </div>
+    <div class="nav-item" onclick="show('safety')">
+      <span class="nav-icon">🛡️</span> 안전 안내
+    </div>
+    <div class="nav-item" onclick="show('faq')">
+      <span class="nav-icon">❓</span> 자주 묻는 질문
+    </div>
+
+    <div class="nav-group-label">요약</div>
+    <div class="nav-item" onclick="show('summary')">
+      <span class="nav-icon">⭐</span> 핵심 요약 한 장
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    변경 시 학부방 공지 우선 적용<br>
+    문의 → 카카오채널 여놀 행정실
+  </div>
+</div>
+
+<!-- ══════════════════════ MAIN ══════════════════════ -->
+<div class="main">
+  <div class="topbar">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="menu-btn" id="menuBtn" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-title" id="topbarTitle">홈 · 안내문 <span>여놀 재학생 가이드북</span></div>
+    </div>
+
+  </div>
+
+  <!-- ──── HOME ──── -->
+  <section class="section active" id="sec-home">
+    <div class="section-hero">
+      <div class="hero-label">YEONOL Student Guide · v1.0</div>
+      <div class="hero-title">여놀대학<br>재학생 가이드북</div>
+      <div class="hero-desc" style="margin-top:8px;">여놀 정회원이라면 꼭 알아야 할 모든 것을 담았어요.<br>왼쪽 목차에서 원하는 항목을 클릭해서 확인하세요 🌿</div>
+    </div>
+
+    <div class="home-notice">
+      <strong>📌 이 문서를 읽기 전에 꼭 확인하세요</strong><br><br>
+      이 문서는 <strong>여놀 기본 회칙을 바탕으로 한 재학생 세부 이용 안내서</strong>입니다.<br>
+      여놀 기본 회칙 본문은 <strong>네이버 공식 카페 내 여놀 회칙</strong>을 반드시 함께 확인해주세요.<br>
+      이 가이드북은 운영 상황에 따라 조정될 수 있으며, 변경 시 <strong>학부방 공지가 우선</strong>합니다.
+    </div>
+
+    <h2 class="sh">목차</h2>
+    <div style="background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:12px 0;">
+      <div style="background:var(--navy);padding:10px 18px;font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Contents</div>
+      <div onclick="show('intro')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">🌿</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">01. 여놀 소개 &amp; 용어 정리</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">모임 소개, 가입 프로세스, 용어 16가지</div></div>
+      </div>
+      <div onclick="show('space')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">💬</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">02. 공간 이용 안내</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">카톡방 종류, 목적, 가능/불가 행동</div></div>
+      </div>
+      <div onclick="show('rules')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">📋</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">03. 재학생 기본 이용 수칙</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">기본 매너, 즉시 강퇴 행위, 법적 책임</div></div>
+      </div>
+      <div onclick="show('events')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">🎉</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">04. 공식 행사 · 벙 · 유료 프로그램</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">세 가지 차이, 벙 개설 기준, 유료 프로그램 종류</div></div>
+      </div>
+      <div onclick="show('cancel')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">⏰</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">05. 취소 · 노쇼 · 벌금 규정</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">당일취소 3,000원 / 노쇼 즉시 강퇴 / 예외 기준</div></div>
+      </div>
+      <div onclick="show('nol')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">💛</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">06. NOL 크레딧 안내</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">적립 · 사용 · 소멸 기준</div></div>
+      </div>
+      <div onclick="show('contact')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">📞</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">07. 신고 · 문의 · 민원 접수</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">유형별 문의 창구, 신고 방법</div></div>
+      </div>
+      <div onclick="show('sanction')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">⚖️</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">08. 제재 기준 안내</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">경고 → 벌금 → 활동제한 → 강퇴 단계</div></div>
+      </div>
+      <div onclick="show('safety')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">🛡️</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">09. 안전 안내</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">모임 안전, 개인정보 보호, 위험 상황 대응</div></div>
+      </div>
+      <div onclick="show('faq')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background=''">
+        <span style="font-size:16px;">❓</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">10. 자주 묻는 질문 (FAQ)</div><div style="font-size:11px;color:var(--text3);margin-top:1px;">가장 많이 묻는 질문 10가지</div></div>
+      </div>
+      <div onclick="show('summary')" style="display:flex;align-items:center;gap:12px;padding:12px 18px;cursor:pointer;transition:background 0.15s;background:var(--gold-soft);" onmouseover="this.style.background='#faecd0'" onmouseout="this.style.background='var(--gold-soft)'">
+        <span style="font-size:16px;">⭐</span>
+        <div><div style="font-size:13px;font-weight:700;color:var(--navy);">★ 핵심 요약 한 장</div><div style="font-size:11px;color:#92400e;margin-top:1px;">이것만 기억해도 됩니다</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── 소개 & 용어 ──── -->
+  <section class="section" id="sec-intro">
+    <div class="section-hero">
+      <div class="hero-label">01 · 여놀 기본 정보</div>
+      <div class="hero-title">여놀 소개 &amp; 용어 정리</div>
+      <div class="hero-desc">처음 오신 분도, 오래된 회원도 — 용어만 알면 헷갈릴 게 없어요</div>
+    </div>
+
+    <h2 class="sh">여놀은 어떤 모임인가요?</h2>
+    <div class="box box-info">
+      💛 지방에서 홀로 서울에 상경하며 깊은 외로움을 경험한 한 사람이, 수도권의 외로운 여성들에게 <strong>'머물 수 있는 놀이터'와 '진짜 친구'를 만들어주고 싶다는 마음으로 시작된 모임</strong>입니다.
+    </div>
+    <table class="tbl" style="margin-top:12px;">
+      <tr><th>항목</th><th>내용</th></tr>
+      <tr><td><strong>모임명</strong></td><td>여놀 (YEONOL) — 여자+놀이터의 줄임말</td></tr>
+      <tr><td><strong>형태</strong></td><td>2030 여성 중심 오프라인 친목 커뮤니티</td></tr>
+      <tr><td><strong>대상</strong></td><td>수도권 거주 2030 여성</td></tr>
+      <tr><td><strong>슬로건</strong></td><td>감각있는 2030 여성들의 프라이빗 놀이터</td></tr>
+      <tr><td><strong>핵심 가치</strong></td><td>안전 · 진짜 친구 · 지속 관계</td></tr>
+      <tr><td><strong>대표 색상</strong></td><td>네이비 <span style="display:inline-block;width:14px;height:14px;background:#031b4a;border-radius:3px;vertical-align:middle;margin-right:4px;"></span> #031b4a</td></tr>
+    </table>
+
+    <h2 class="sh" style="margin-top:28px;">여놀 조직도</h2>
+
+    <div style="background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:24px 20px;margin:12px 0;">
+
+      <!-- 캡틴 -->
+      <div style="display:flex;justify-content:center;margin-bottom:0;">
+        <div style="background:#031b4a;border-radius:10px;padding:10px 28px;text-align:center;min-width:120px;">
+          <div style="font-size:9px;font-weight:700;color:#c9a84c;letter-spacing:2px;margin-bottom:3px;">설립자</div>
+          <div style="font-size:14px;font-weight:900;color:#fff;">캡틴</div>
+        </div>
+      </div>
+
+      <!-- 선 -->
+      <div style="display:flex;justify-content:center;">
+        <div style="width:2px;height:20px;background:#031b4a;opacity:0.25;"></div>
+      </div>
+
+      <!-- 임원 -->
+      <div style="display:flex;justify-content:center;margin-bottom:0;">
+        <div style="background:#0a2d6e;border-radius:10px;padding:10px 28px;text-align:center;min-width:120px;">
+          <div style="font-size:9px;font-weight:700;color:#7ab3f5;letter-spacing:2px;margin-bottom:3px;">OFFICERS</div>
+          <div style="font-size:14px;font-weight:700;color:#fff;">임원</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">전무이사 · 운영이사</div>
+        </div>
+      </div>
+
+      <!-- 선 -->
+      <div style="display:flex;justify-content:center;">
+        <div style="width:2px;height:20px;background:#031b4a;opacity:0.25;"></div>
+      </div>
+
+      <!-- 운영진 -->
+      <div style="display:flex;justify-content:center;margin-bottom:0;">
+        <div style="background:#1e3a6e;border-radius:10px;padding:10px 28px;text-align:center;min-width:120px;">
+          <div style="font-size:9px;font-weight:700;color:#7ab3f5;letter-spacing:2px;margin-bottom:3px;">STAFF</div>
+          <div style="font-size:14px;font-weight:700;color:#fff;">운영진</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;">본부장 · 팀장 · 부팀장</div>
+        </div>
+      </div>
+
+      <!-- 선 + 분기 -->
+      <div style="display:flex;justify-content:center;position:relative;height:40px;">
+        <div style="width:2px;height:20px;background:#031b4a;opacity:0.25;"></div>
+        <!-- 가로선 -->
+        <div style="position:absolute;top:20px;left:calc(50% - 100px);width:200px;height:2px;background:#031b4a;opacity:0.2;"></div>
+        <!-- 왼쪽 세로 -->
+        <div style="position:absolute;top:20px;left:calc(50% - 100px);width:2px;height:20px;background:#031b4a;opacity:0.2;"></div>
+        <!-- 오른쪽 세로 -->
+        <div style="position:absolute;top:20px;right:calc(50% - 100px);width:2px;height:20px;background:#031b4a;opacity:0.2;"></div>
+      </div>
+
+      <!-- 동아리회장 + 동기대표 -->
+      <div style="display:flex;justify-content:center;gap:16px;margin-bottom:0;">
+        <div style="background:#2a4a8a;border-radius:10px;padding:10px 18px;text-align:center;min-width:110px;">
+          <div style="font-size:9px;font-weight:700;color:#a0c4f0;letter-spacing:1px;margin-bottom:3px;">CLUB</div>
+          <div style="font-size:13px;font-weight:700;color:#fff;">동아리 회장</div>
+        </div>
+        <div style="background:#2a4a8a;border-radius:10px;padding:10px 18px;text-align:center;min-width:110px;">
+          <div style="font-size:9px;font-weight:700;color:#a0c4f0;letter-spacing:1px;margin-bottom:3px;">REP</div>
+          <div style="font-size:13px;font-weight:700;color:#fff;">동기 대표</div>
+        </div>
+      </div>
+
+      <!-- 선 -->
+      <div style="display:flex;justify-content:center;">
+        <div style="width:2px;height:20px;background:#031b4a;opacity:0.2;"></div>
+      </div>
+
+      <!-- 재학생 -->
+      <div style="display:flex;justify-content:center;">
+        <div style="background:#fff;border:2px solid #c9a84c;border-radius:10px;padding:10px 28px;text-align:center;min-width:200px;">
+          <div style="font-size:9px;font-weight:700;color:#c9a84c;letter-spacing:2px;margin-bottom:3px;">MEMBERS</div>
+          <div style="font-size:14px;font-weight:700;color:#031b4a;">재학생</div>
+          <div style="font-size:10px;color:var(--text3);margin-top:2px;">여놀 전체 정회원</div>
+        </div>
+      </div>
+
+    </div>
+
+    <h2 class="sh" style="margin-top:28px;">가입 프로세스</h2>
+    <div class="flow">
+      <div class="flow-step"><div class="flow-step-box dark">① 카카오채널 가입 신청</div></div>
+      <div class="flow-arrow" style="text-align:left;padding-left:20px;">↓</div>
+      <div class="flow-step"><div class="flow-step-box light">② 신입 OT 영상 시청 (약 10분)</div></div>
+      <div class="flow-arrow" style="text-align:left;padding-left:20px;">↓</div>
+      <div class="flow-step"><div class="flow-step-box light">③ 가입 신청서 작성 &nbsp;<small>신분증 인증 + 증명사진 + 입학시험</small></div></div>
+      <div class="flow-arrow" style="text-align:left;padding-left:20px;">↓</div>
+      <div class="flow-step"><div class="flow-step-box light">④ 운영진 승인</div></div>
+      <div class="flow-arrow" style="text-align:left;padding-left:20px;">↓</div>
+      <div class="flow-step"><div class="flow-step-box finish">⑤ 학번코드 + 학생증 발급 + 학부방 입장 🎉</div></div>
+    </div>
+
+    <h2 class="sh" style="margin-top:28px;">꼭 알아야 할 용어</h2>
+    <div class="term-grid">
+      <div class="term-item"><div class="term-name">여놀</div><div class="term-desc">이 모임의 이름. 여자놀이터의 줄임말.</div></div>
+      <div class="term-item"><div class="term-name">여놀대학</div><div class="term-desc">정회원 운영 시스템의 세계관. 실제 교육기관이 아님.</div></div>
+      <div class="term-item"><div class="term-name">재학생</div><div class="term-desc">여놀 정회원. 신원 확인 절차를 거친 검증된 회원.</div></div>
+      <div class="term-item"><div class="term-name">학부방</div><div class="term-desc">정회원 전용 필수 공지 카톡방. 출생년도 기준 3개 그룹으로 나뉨.</div></div>
+      <div class="term-item"><div class="term-name">정보광장</div><div class="term-desc">매일 아침 뉴스 및 유용한 정보를 공유하는 카톡방.</div></div>
+      <div class="term-item"><div class="term-name">대나무숲 광장</div><div class="term-desc">자유 수다 + 모임(벙) 개설 및 참여가 가능한 자유 카톡방.</div></div>
+      <div class="term-item"><div class="term-name">학번동기방</div><div class="term-desc">출생년도가 같은 동갑 재학생끼리 모이는 소그룹 단톡방. (동갑방)</div></div>
+      <div class="term-item"><div class="term-name">동아리</div><div class="term-desc">주제별 소모임. 예비신부·유부녀·댄스·자기계발 등.</div></div>
+      <div class="term-item"><div class="term-name">행정실</div><div class="term-desc">여놀 공식 문의 창구. 카카오채널명 [여놀].</div></div>
+      <div class="term-item"><div class="term-name">NOL(놀)</div><div class="term-desc">여놀 내부 전용 크레딧. 활동으로 적립되며, 행사 참가비로 사용 가능.</div></div>
+      <div class="term-item"><div class="term-name">공식 행사</div><div class="term-desc">여놀에서 공식적으로 기획·승인·운영하는 행사 및 프로그램.</div></div>
+      <div class="term-item"><div class="term-name">모임 (벙)</div><div class="term-desc">재학생 개인이 자유롭게 주최하는 모임.</div></div>
+      <div class="term-item"><div class="term-name">유료 프로그램</div><div class="term-desc">친구하라·친구팅·캠퍼스 등 별도 참가비 있는 프로그램.</div></div>
+      <div class="term-item"><div class="term-name">휴학</div><div class="term-desc">학부방 퇴장 상태. 여놀 내 모든 활동 즉시 제한. 복학 시 재입장 가능.</div></div>
+      <div class="term-item"><div class="term-name">자퇴</div><div class="term-desc">여놀 탈퇴. 재입학 시 OT 재이수 + 운영진 승인 필요.</div></div>
+      <div class="term-item"><div class="term-name">퇴학 (강퇴)</div><div class="term-desc">금지 행위 위반 시 운영진에 의해 강제 퇴장 조치. 재입학 불가.</div></div>
+    </div>
+
+    <div class="box box-warn" style="margin-top:28px;">
+      📌 <strong>학부방 퇴장 시 즉시 휴학생으로 전환됩니다</strong><br>
+      학부방을 퇴장하면 즉시 휴학생으로 전환되며, 여놀 내 모든 활동이 금지됩니다.<br><br>
+      📌 <strong>여놀은 출생년도 기준으로만 나이를 구분합니다</strong><br>
+      여놀은 빠른년생을 인정하지 않습니다. 나이 구분·학부방 배정·동갑방 등 모든 기준은 <strong>출생년도</strong>를 따릅니다.<br><br>
+      📌 <strong>가입 시 제출한 정보는 정확해야 합니다</strong><br>
+      가입 신청서에 허위 정보를 기재하거나 타인의 정보를 도용하여 가입한 경우, 추후 확인 시 즉시 강퇴 및 재입학 영구 제한 등 불이익 조치가 취해질 수 있습니다.
+    </div>
+  </section>
+
+  <!-- ──── 공간 이용 ──── -->
+  <section class="section" id="sec-space">
+    <div class="section-hero">
+      <div class="hero-label">02 · 공간 이용 안내</div>
+      <div class="hero-title">공간 이용 안내</div>
+      <div class="hero-desc">여놀에는 어떤 카톡방들이 있을까요? 각 방의 성격을 확인하세요</div>
+    </div>
+
+    <h2 class="sh">카톡방 한눈에 보기</h2>
+
+    <!-- 카톡방 카드 -->
+    <div style="display:flex;flex-direction:column;gap:10px;margin:12px 0;">
+
+      <!-- 학부방 -->
+      <div style="background:#fff;border:2px solid #031b4a;border-radius:12px;overflow:hidden;">
+        <div style="background:#031b4a;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;background:rgba(255,255,255,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;">📢</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">학부방</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:1px;">정회원 전용 공식 공지 카톡방</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <span style="background:rgba(255,255,255,0.12);color:rgba(255,255,255,0.8);font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;">공지방</span>
+            <span style="background:#dc2626;color:#fff;font-size:10px;font-weight:800;padding:4px 12px;border-radius:10px;letter-spacing:0.5px;">필수 입장</span>
+          </div>
+        </div>
+        <div style="padding:14px 18px;">
+          <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:1px;margin-bottom:8px;">이런 채널이에요</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px;">
+            <li style="font-size:12px;color:var(--navy);background:#eff6ff;border:1px solid #bfdbfe;padding:3px 10px;border-radius:8px;">공지 확인 및 열람</li>
+            <li style="font-size:12px;color:var(--navy);background:#eff6ff;border:1px solid #bfdbfe;padding:3px 10px;border-radius:8px;">운영 안내 확인</li>
+          </ul>
+        </div>
+        <div style="background:#fef2f2;padding:8px 18px;border-top:1px solid #fecaca;font-size:11px;color:#dc2626;font-weight:600;">
+          ⚠️ 퇴장 시 즉시 휴학 처리 — 모든 여놀 활동이 제한됩니다
+        </div>
+      </div>
+
+      <!-- 대나무숲 광장 -->
+      <div style="background:#fff;border:1.5px solid #2563eb;border-radius:12px;overflow:hidden;">
+        <div style="background:#2563eb;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;background:rgba(255,255,255,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;">🎋</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">대나무숲 광장</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:1px;">자유 소통 + 모임(벙) 개설 카톡방</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <span style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;">자유대화</span>
+            <span style="background:rgba(255,255,255,0.18);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;">선택 입장</span>
+            <span style="background:#22c55e;color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;">벙 개설 가능</span>
+          </div>
+        </div>
+        <div style="padding:14px 18px;">
+          <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:1px;margin-bottom:8px;">이런 채널이에요</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px;">
+            <li style="font-size:12px;color:var(--navy);background:#eff6ff;border:1px solid #bfdbfe;padding:3px 10px;border-radius:8px;">자유로운 수다·공감글</li>
+            <li style="font-size:12px;color:var(--navy);background:#eff6ff;border:1px solid #bfdbfe;padding:3px 10px;border-radius:8px;">모임(벙) 개설 및 참여</li>
+            <li style="font-size:12px;color:var(--navy);background:#eff6ff;border:1px solid #bfdbfe;padding:3px 10px;border-radius:8px;">일상 정보 공유</li>
+          </ul>
+        </div>
+        <div style="background:#eff6ff;padding:8px 18px;border-top:1px solid #bfdbfe;font-size:11px;color:#1e40af;">
+          💡 벙 개설 방법은 대나무숲 AI봇 프로필을 참고해주세요
+        </div>
+      </div>
+
+      <!-- 정보광장 -->
+      <div style="background:#fff;border:1.5px solid #059669;border-radius:12px;overflow:hidden;">
+        <div style="background:#059669;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:36px;height:36px;background:rgba(255,255,255,0.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;">📰</div>
+            <div>
+              <div style="font-size:15px;font-weight:700;color:#fff;">정보광장</div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:1px;">매일 아침 뉴스 및 정보 공유 카톡방</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <span style="background:rgba(255,255,255,0.15);color:rgba(255,255,255,0.9);font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;">정보 공유</span>
+            <span style="background:rgba(255,255,255,0.18);color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:10px;">선택 입장</span>
+          </div>
+        </div>
+        <div style="padding:14px 18px;">
+          <div style="font-size:10px;font-weight:700;color:var(--text3);letter-spacing:1px;margin-bottom:8px;">이런 채널이에요</div>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px;">
+            <li style="font-size:12px;color:var(--navy);background:#ecfdf5;border:1px solid #6ee7b7;padding:3px 10px;border-radius:8px;">뉴스·정보 열람</li>
+            <li style="font-size:12px;color:var(--navy);background:#ecfdf5;border:1px solid #6ee7b7;padding:3px 10px;border-radius:8px;">꿀팁·정보 공유</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 학번동기방 + 동아리방 나란히 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+
+        <!-- 학번동기방 -->
+        <div style="background:#fff;border:1.5px solid #d97706;border-radius:12px;overflow:hidden;">
+          <div style="background:#d97706;padding:12px 14px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:30px;height:30px;background:rgba(255,255,255,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;">👯</div>
+                <div style="font-size:14px;font-weight:700;color:#fff;">학번동기방</div>
+              </div>
+              <span style="background:rgba(255,255,255,0.18);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;">선택 입장</span>
+            </div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.6);">출생년도 동갑 전용 단톡방</div>
+          </div>
+          <div style="padding:12px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--text3);margin-bottom:6px;">이런 채널이에요</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;">
+              <li style="font-size:11px;color:var(--navy);background:#fffbeb;border:1px solid #fcd34d;padding:3px 9px;border-radius:6px;display:inline-block;">동갑 재학생 대화</li>
+              <li style="font-size:11px;color:var(--navy);background:#fffbeb;border:1px solid #fcd34d;padding:3px 9px;border-radius:6px;display:inline-block;">동갑벙</li>
+            </ul>
+          </div>
+          <div style="background:#fffbeb;padding:6px 14px;border-top:1px solid #fcd34d;font-size:10px;color:#92400e;">
+            출생년도 기준으로 입장 가능
+          </div>
+        </div>
+
+        <!-- 동아리방 -->
+        <div style="background:#fff;border:1.5px solid #7c3aed;border-radius:12px;overflow:hidden;">
+          <div style="background:#7c3aed;padding:12px 14px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:30px;height:30px;background:rgba(255,255,255,0.15);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;">🎯</div>
+                <div style="font-size:14px;font-weight:700;color:#fff;">동아리방</div>
+              </div>
+              <span style="background:rgba(255,255,255,0.18);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;">선택 입장</span>
+            </div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.6);">주제별 소모임 카톡방</div>
+          </div>
+          <div style="padding:12px 14px;">
+            <div style="font-size:10px;font-weight:700;color:var(--text3);margin-bottom:6px;">이런 채널이에요</div>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px;">
+              <li style="font-size:11px;color:var(--navy);background:#f5f3ff;border:1px solid #ddd6fe;padding:3px 9px;border-radius:6px;display:inline-block;">주제 관련 대화·약속</li>
+              <li style="font-size:11px;color:var(--navy);background:#f5f3ff;border:1px solid #ddd6fe;padding:3px 9px;border-radius:6px;display:inline-block;">동아리 내 모임</li>
+            </ul>
+          </div>
+          <div style="background:#f5f3ff;padding:6px 14px;border-top:1px solid #ddd6fe;font-size:10px;color:#4c1d95;">
+            동아리 신청서 작성 후 운영진 승인을 통해 입장
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 공통 금지 -->
+    <div class="box box-danger" style="margin-top:16px;">
+      🚫 <strong>모든 카톡방 공통 금지 사항</strong><br>
+      전화번호 · 카카오ID · 인스타ID 등 개인정보 공유 금지 &nbsp;·&nbsp; 청첩장 공유 금지 &nbsp;·&nbsp; 타 커뮤니티 홍보·모집 &nbsp;·&nbsp; 영업·다단계·투자 권유 &nbsp;·&nbsp; 특정인 비방
+    </div>
+
+    <h2 class="sh" style="margin-top:44px;">동아리 가입 방법</h2>
+
+    <!-- 가입 플로우 -->
+    <div style="display:flex;align-items:center;gap:0;margin:12px 0 20px;background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:16px 20px;overflow-x:auto;">
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:80px;">
+        <div style="width:40px;height:40px;background:#031b4a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:700;flex-shrink:0;">1</div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-top:6px;text-align:center;">원하는<br>동아리 선택</div>
+      </div>
+      <div style="flex:1;height:2px;background:linear-gradient(90deg,#031b4a,#2563eb);min-width:20px;margin-bottom:18px;"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:100px;">
+        <div style="width:40px;height:40px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:700;flex-shrink:0;">2</div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-top:6px;text-align:center;">카카오채널 [여놀]<br>으로 톡 전송</div>
+        <div style="font-size:10px;color:var(--text3);text-align:center;margin-top:2px;">실명 + 출생연도<br>+ 동아리 이름</div>
+      </div>
+      <div style="flex:1;height:2px;background:linear-gradient(90deg,#2563eb,#059669);min-width:20px;margin-bottom:18px;"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:80px;">
+        <div style="width:40px;height:40px;background:#059669;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:700;flex-shrink:0;">3</div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-top:6px;text-align:center;">신청서<br>전달받기</div>
+      </div>
+      <div style="flex:1;height:2px;background:linear-gradient(90deg,#059669,#7c3aed);min-width:20px;margin-bottom:18px;"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:80px;">
+        <div style="width:40px;height:40px;background:#7c3aed;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;font-weight:700;flex-shrink:0;">4</div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-top:6px;text-align:center;">신청서<br>작성 제출</div>
+      </div>
+      <div style="flex:1;height:2px;background:linear-gradient(90deg,#7c3aed,#c9a84c);min-width:20px;margin-bottom:18px;"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;min-width:90px;">
+        <div style="width:40px;height:40px;background:#c9a84c;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎉</div>
+        <div style="font-size:11px;font-weight:700;color:var(--navy);margin-top:6px;text-align:center;">운영진 승인 후<br>동아리방 입장</div>
+      </div>
+    </div>
+
+    <h2 class="sh">동아리 종류</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;">
+
+      <!-- 예비신부동아리 -->
+      <div style="background:#fff;border:1.5px solid #f43f5e;border-radius:12px;overflow:hidden;">
+        <div style="background:#f43f5e;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:18px;">💍</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#fff;">예비신부동아리</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.6);">[디데이]</div>
+            </div>
+          </div>
+          <span style="background:rgba(255,255,255,0.18);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;">모집 중</span>
+        </div>
+        <div style="padding:12px 14px;">
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:12px;color:var(--text2);padding-left:14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:#f43f5e;">·</span>웨딩홀 계약서가 있는 예비신부 재학생</li>
+            <li style="font-size:12px;color:var(--text2);padding-left:14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:#f43f5e;">·</span>예비신부들끼리 친목 &amp; 정보 공유</li>
+          </ul>
+        </div>
+        <div style="background:#fff1f2;padding:7px 14px;border-top:1px solid #fecdd3;font-size:10px;color:#be123c;">
+          ✅ 가입 조건: 웨딩홀 계약서 보유 재학생
+        </div>
+      </div>
+
+      <!-- 유부녀동아리 -->
+      <div style="background:#fff;border:1.5px solid #8b5cf6;border-radius:12px;overflow:hidden;">
+        <div style="background:#8b5cf6;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:18px;">🏠</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#fff;">유부녀동아리</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.6);">[유부부]</div>
+            </div>
+          </div>
+          <span style="background:rgba(255,255,255,0.18);color:#fff;font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;">모집 중</span>
+        </div>
+        <div style="padding:12px 14px;">
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;">
+            <li style="font-size:12px;color:var(--text2);padding-left:14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:#8b5cf6;">·</span>기혼 재학생들만의 공감 &amp; 친목 동아리</li>
+            <li style="font-size:12px;color:var(--text2);padding-left:14px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:#8b5cf6;">·</span>자녀 유무 무관</li>
+          </ul>
+        </div>
+        <div style="background:#f5f3ff;padding:7px 14px;border-top:1px solid #ddd6fe;font-size:10px;color:#5b21b6;line-height:1.5;">
+          ℹ️ 혼인신고 완료 + 결혼식 예정인 분은 유부부가 아닌 <strong>디데이</strong>로 가입
+        </div>
+      </div>
+
+      <!-- 갓생동아리 -->
+      <div style="background:#fff;border:1.5px solid #0ea5e9;border-radius:12px;overflow:hidden;">
+        <div style="background:#0ea5e9;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:18px;">🌱</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#fff;">갓생동아리</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.6);">자기계발 · 성장</div>
+            </div>
+          </div>
+          <span style="background:rgba(0,0,0,0.18);color:rgba(255,255,255,0.7);font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;">준비 중</span>
+        </div>
+        <div style="padding:12px 14px;">
+          <div style="font-size:12px;color:var(--text3);font-style:italic;">내용 준비 중입니다.</div>
+        </div>
+      </div>
+
+      <!-- 댄스동아리 -->
+      <div style="background:#fff;border:1.5px solid #f97316;border-radius:12px;overflow:hidden;">
+        <div style="background:#f97316;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:18px;">💃</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;color:#fff;">댄스동아리</div>
+              <div style="font-size:10px;color:rgba(255,255,255,0.6);">댄스 · 취미</div>
+            </div>
+          </div>
+          <span style="background:rgba(0,0,0,0.18);color:rgba(255,255,255,0.7);font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;">준비 중</span>
+        </div>
+        <div style="padding:12px 14px;">
+          <div style="font-size:12px;color:var(--text3);font-style:italic;">내용 준비 중입니다.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ──── 기본 이용 수칙 ──── -->
+  <section class="section" id="sec-rules">
+    <div class="section-hero">
+      <div class="hero-label">03 · 기본 이용 수칙</div>
+      <div class="hero-title">재학생 기본 이용 수칙</div>
+      <div class="hero-desc">여놀 생활의 기본 매너 — 읽자마자 이해되게 썼어요</div>
+    </div>
+
+    <div class="g2">
+      <div>
+        <h2 class="sh">이렇게 해주세요 ✅</h2>
+        <ul class="chk">
+          <li>모든 재학생을 <strong>존중하고 배려</strong>하는 태도</li>
+          <li>약속 행사는 <strong>미리 취소 또는 참여</strong></li>
+          <li>불만은 <strong>운영진에게 개별 연락</strong></li>
+          <li>불편 상황은 <strong>즉시 운영진에게 신고</strong></li>
+          <li>사진 촬영 전 <strong>주변 동의 배려</strong></li>
+          <li>여놀 정보는 <strong>내부에서만 사용</strong></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="sh">이러면 안 돼요 ❌</h2>
+        <ul class="x">
+          <li>카톡방에서 <strong>전화번호·카카오ID·인스타ID 공유</strong><br><small>개인정보는 오프라인에서 직접 교환해주세요</small></li>
+          <li>정치·종교·이념 <strong>강요 또는 논쟁 유도</strong></li>
+          <li>특정인 <strong>배제하거나 무리 형성</strong></li>
+          <li>단톡방에서 <strong>공개적 불만 표출</strong></li>
+          <li>사진·대화 내용 <strong>외부 SNS 유출</strong></li>
+          <li><strong>외부인을 공식 채널에 초대</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="sh" style="border-left-color:var(--red);color:var(--red);">즉시 강퇴 대상 행위 🚨</h2>
+    <div class="box box-danger">
+      아래 행위는 <strong>사전 경고 없이 즉시 퇴장·제재</strong>됩니다. 몰랐어도 예외 없습니다.
+    </div>
+
+    <div class="g2">
+      <div class="card" style="border-top:3px solid var(--red);">
+        <div class="card-header" style="color:var(--red);">영업 · 홍보 · 다단계 · 투자</div>
+        <p style="font-size:12px;color:var(--text2);">상품 판매, 다단계, 투자 권유, 공동구매 유도 등 모든 상업적 행위</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--red);">
+        <div class="card-header" style="color:var(--red);">종교 포교</div>
+        <p style="font-size:12px;color:var(--text2);">여놀 모임을 종교 활동이나 포교에 활용하는 행위</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--red);">
+        <div class="card-header" style="color:var(--red);">연애 목적 접근 · 성희롱</div>
+        <p style="font-size:12px;color:var(--text2);">연애 목적 접근, 성적 발언·접촉, 과도한 구애</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--red);">
+        <div class="card-header" style="color:var(--red);">재학생 간 금전 거래</div>
+        <p style="font-size:12px;color:var(--text2);">빌려주기 포함 모든 금전 거래 유도 행위</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--red);">
+        <div class="card-header" style="color:var(--red);">집단 선동 · 명예훼손</div>
+        <p style="font-size:12px;color:var(--text2);">운영 판단에 대한 집단 항의, 허위 사실 유포, 명의 도용</p>
+      </div>
+      <div class="card" style="border-top:3px solid var(--red);">
+        <div class="card-header" style="color:var(--red);">타 커뮤니티 영업 · 홍보</div>
+        <p style="font-size:12px;color:var(--text2);">여놀 채널에서 다른 모임·커뮤니티 모집·홍보하는 행위</p>
+      </div>
+    </div>
+
+    <div class="box box-danger" style="margin-top:16px;">
+      ⚖️ <strong>법적 책임도 생길 수 있는 행위:</strong><br>
+      명예훼손(형법 307조) · 개인정보 무단 유포(개인정보보호법) · 성희롱·성추행(성폭력처벌법) · 여놀 명의 도용<br>
+      <small>여놀 제재와 별개로 법적 대응이 이루어질 수 있습니다.</small>
+    </div>
+  </section>
+
+  <!-- ──── 행사·벙·유료 ──── -->
+  <section class="section" id="sec-events">
+    <div class="section-hero">
+      <div class="hero-label">04 · 행사 · 벙 · 유료 프로그램</div>
+      <div class="hero-title">공식 행사 · 벙 · 유료 프로그램</div>
+      <div class="hero-desc">세 가지 구분을 알면 참여 전 혼선이 줄어요</div>
+    </div>
+
+    <h2 class="sh">세 가지 차이 한눈에</h2>
+    <table class="tbl">
+      <tr><th>구분</th><th>공식 행사</th><th>벙 (모임)</th><th>유료 프로그램</th></tr>
+      <tr><td><strong>주최</strong></td><td>여놀 운영진</td><td>재학생 개인</td><td>여놀 운영진</td></tr>
+      <tr><td><strong>참가비</strong></td><td>운영 서비스 비용 없음<br><small>실제 발생 비용(장소·식비 등)만 N빵</small></td><td>주최자 결정</td><td>별도 요금 있음</td></tr>
+      <tr><td><strong>책임</strong></td><td>운영진 관리</td><td>주최자 전적 책임</td><td>운영진 관리</td></tr>
+      <tr><td><strong>사고 발생 시</strong></td><td>운영진 대응 가능<br><small>(개인 부주의 제외)</small></td><td>여놀 관여 없음<br><small>당사자 간 해결</small></td><td>운영진 대응 가능<br><small>(개인 부주의 제외)</small></td></tr>
+      <tr><td><strong>공지 위치</strong></td><td>학부방 공식 공지</td><td>대나무숲 광장</td><td>학부방 공식 공지</td></tr>
+    </table>
+
+    <div class="box box-info" style="margin-bottom:16px;">
+      💡 <strong>공식 행사 참가비 안내</strong><br>
+      여놀 운영진의 기획·진행 서비스는 무료입니다. 단, 행사를 위해 실제로 발생하는 비용(장소 대관비·식비·재료비·이동비 등)은 참가자 간 N빵으로 진행됩니다.
+    </div>
+
+    <div class="g2">
+      <div>
+        <h2 class="sh">벙 개설 기준</h2>
+        <ul class="chk">
+          <li>재학생이라면 누구나 벙 개설 가능</li>
+          <li>벙 여는 방법은 <strong>대나무숲 AI봇 프로필 참고</strong></li>
+          <li>참가비 있는 벙은 금액·용도 명확히 안내</li>
+          <li>주최자는 참가자 안전에 책임 있음</li>
+        </ul>
+        <ul class="x" style="margin-top:8px;">
+          <li>공식 행사와 <strong>같은 날시 벙 개설 금지</strong></li>
+          <li>벙을 타 모임 홍보·모집 수단으로 활용 금지</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="sh">유료 프로그램 종류</h2>
+        <div class="prog-card" style="margin-bottom:8px;">
+          <h4>💛 친구하라</h4>
+          <p>나랑 잘 맞는 친구 4인 그룹 매칭 서비스. 대표가 직접 분석·연결.</p>
+        </div>
+        <div class="prog-card" style="margin-bottom:8px;">
+          <h4>🫧 친구팅</h4>
+          <p>2시간 안에 빠르게 친해지는 기획형 오프라인 파티.</p>
+        </div>
+        <div class="prog-card">
+          <h4>🏫 캠퍼스 프로그램</h4>
+          <p>동네 친구 만들기. 지역별 소그룹, 격주 금요일 × 4회.</p>
+        </div>
+        <div class="box box-info" style="margin-top:8px;">
+          📌 유료 프로그램 환불 기준은 해당 공지 또는 카카오채널 문의
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── 취소·노쇼·벌금 ──── -->
+  <section class="section" id="sec-cancel">
+    <div class="section-hero">
+      <div class="hero-label">05 · 취소 · 노쇼 · 벌금</div>
+      <div class="hero-title">취소 · 노쇼 · 벌금 규정</div>
+      <div class="hero-desc">여놀에서 제일 자주 묻는 내용이에요 — 미리 알아두면 억울한 일 없어요</div>
+    </div>
+
+    <div class="box box-dark">
+      <strong>여놀의 약속 문화:</strong> 참여 신청은 다른 재학생에게 자리를 내어주는 행위입니다. 취소가 필요하다면 <strong>반드시 미리 연락</strong>해주세요.
+    </div>
+
+    <h2 class="sh">취소 · 노쇼 · 벌금 기준표</h2>
+    <table class="tbl">
+      <tr><th>상황</th><th>기준</th><th>제재</th><th>납부 방식</th></tr>
+      <tr>
+        <td><strong>당일 취소</strong></td>
+        <td>행사 당일 취소</td>
+        <td><span class="chip chip-orange">벌금 3,000원</span></td>
+        <td>카카오채널 행정실 → 3일 이내</td>
+      </tr>
+      <tr>
+        <td><strong>노쇼</strong></td>
+        <td>연락 없이 불참</td>
+        <td><span class="chip chip-red">즉시 강퇴</span></td>
+        <td>소명 기회 없이 강퇴</td>
+      </tr>
+      <tr>
+        <td><strong>반복 당일 취소</strong></td>
+        <td>당일 취소 2회 이상</td>
+        <td>추가 제재 가능</td>
+        <td>운영진 판단</td>
+      </tr>
+    </table>
+
+    <div class="box box-danger">
+      🚨 <strong>노쇼(무연락 불참)는 즉시 강퇴입니다.</strong> 참여가 어렵다면 반드시 행사 전에 미리 연락해주세요.
+    </div>
+
+    <div class="g2">
+      <div>
+        <h2 class="sh">벌금 납부 방법</h2>
+        <ul class="dot">
+          <li>납부처: <strong>카카오채널 [여놀]</strong> 안내에 따라 계좌이체</li>
+          <li>납부 기한: 확인 후 <strong>3일 이내</strong></li>
+          <li>미납 시 다음 행사 신청 제한 가능</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="sh">벌금 Q&amp;A</h2>
+        <div class="faq">
+          <div class="faq-q" onclick="toggleFaq(this)">당일 아침에 취소해도 3,000원인가요?<span class="faq-arrow">▼</span></div>
+          <div class="faq-a">네. 행사 당일이라면 사전 연락 여부와 관계없이 3,000원 벌금입니다.</div>
+        </div>
+        <div class="faq">
+          <div class="faq-q" onclick="toggleFaq(this)">노쇼하면 정말 강퇴인가요?<span class="faq-arrow">▼</span></div>
+          <div class="faq-a">네. 무연락 불참은 즉시 강퇴입니다. 어렵다면 늦더라도 꼭 연락해주세요.</div>
+        </div>
+        <div class="faq">
+          <div class="faq-q" onclick="toggleFaq(this)">벌금 기준이 바뀔 수 있나요?<span class="faq-arrow">▼</span></div>
+          <div class="faq-a">변경 시 학부방에 사전 공지합니다. 항상 최신 공지를 확인해주세요.</div>
+        </div>
+        <div class="faq">
+          <div class="faq-q" onclick="toggleFaq(this)">벙(모임)도 같은 기준인가요?<span class="faq-arrow">▼</span></div>
+          <div class="faq-a">벙은 주최자가 정한 기준을 따릅니다. 참여 전 주최자에게 확인하세요.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── NOL ──── -->
+  <section class="section" id="sec-nol">
+    <div class="section-hero">
+      <div class="hero-label">06 · NOL 크레딧</div>
+      <div class="hero-title">NOL(놀) 크레딧 안내</div>
+      <div class="hero-desc">여놀 재학생 전용 내부 크레딧 — 현금이 아닌 여놀만의 포인트예요</div>
+    </div>
+
+    <div class="box box-info">
+      💛 NOL(놀)은 여놀대학 재학생만 적립·사용 가능한 <strong>여놀 전용 내부 크레딧</strong>입니다. 현금 환급·전환·양도는 절대 불가합니다.
+    </div>
+
+    <div class="g2">
+      <div>
+        <h2 class="sh">NOL 적립 기준</h2>
+        <table class="tbl">
+          <tr><th>적립 사유</th><th>적립량</th></tr>
+          <tr><td>입학 웰컴 지급</td><td><span class="chip chip-gold">3,000 NOL</span></td></tr>
+          <tr><td>공식 행사 후기 작성</td><td><span class="chip chip-gold">1,000 NOL</span></td></tr>
+          <tr><td>친구팅 후기 작성</td><td><span class="chip chip-gold">1,000 NOL</span></td></tr>
+          <tr><td>지인 추천 입학</td><td><span class="chip chip-gold">2,000 NOL</span></td></tr>
+          <tr><td>운영 기여 보상</td><td>운영진 비정기 지급</td></tr>
+        </table>
+
+        <div class="box box-green" style="margin-top:12px;">
+          💛 <strong>친구하라 완주 특별 혜택</strong><br>
+          친구하라 3회 완주 + 후기 제출 → <strong>친구하라 1회 무료 이용권</strong><br>
+          <small>(NOL이 아닌 별도 혜택으로 지급)</small>
+        </div>
+      </div>
+      <div>
+        <h2 class="sh">NOL 사용 기준</h2>
+        <table class="tbl">
+          <tr><th>사용처</th><th>사용 가능량</th></tr>
+          <tr><td>친구팅 참가비</td><td>최대 3,000 NOL</td></tr>
+          <tr><td>여놀 공식 행사</td><td>행사별 공지 확인</td></tr>
+          <tr><td>친구하라</td><td>운영진 별도 안내</td></tr>
+        </table>
+
+        <h2 class="sh" style="margin-top:20px;">소멸 조건</h2>
+        <ul class="w">
+          <li><strong>휴학</strong> 시 보유 NOL 자동 소멸</li>
+          <li><strong>자퇴</strong> 시 보유 NOL 자동 소멸</li>
+          <li>현금 환급·전환·양도 절대 불가</li>
+          <li>유효기간·상세 기준은 운영진 별도 안내</li>
+        </ul>
+
+        <div class="box box-warn" style="margin-top:12px;">
+          ⚠️ NOL 관련 적립량 기준은 운영 상황에 따라 변경될 수 있습니다. NOL 부정 사용은 즉시 제재됩니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── 신고·문의 ──── -->
+  <section class="section" id="sec-contact">
+    <div class="section-hero">
+      <div class="hero-label">07 · 신고 · 문의 · 민원</div>
+      <div class="hero-title">신고 · 문의 · 민원 접수</div>
+      <div class="hero-desc">어디에 연락해야 할지 모르면 이 페이지를 보세요</div>
+    </div>
+
+    <h2 class="sh">유형별 문의 창구</h2>
+    <div class="contact-row">
+      <div class="contact-icon">💬</div>
+      <div class="contact-info">
+        <h4>일반 문의</h4>
+        <p>가입·학번·NOL·행사 일정·유료 프로그램 환불 등</p>
+      </div>
+      <div class="contact-dest">카카오채널 [여놀]</div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-icon">🚨</div>
+      <div class="contact-info">
+        <h4>불편 신고 · 위반 행위 신고</h4>
+        <p>불쾌한 상황, 영업·성희롱·금전 거래 등 금지 행위 목격</p>
+      </div>
+      <div class="contact-dest">카카오채널 [여놀] 또는<br>학부방 상위공지 총장실</div>
+    </div>
+
+    <div class="g2">
+      <div>
+        <h2 class="sh">신고 시 알아두세요</h2>
+        <ul class="dot">
+          <li>신고 내용은 <strong>운영진 내부에서만 처리</strong>됩니다</li>
+          <li>가능하다면 <strong>증빙 자료(캡처 등)</strong>를 함께 제출</li>
+          <li>익명 제보도 가능하나 결과 안내가 어려울 수 있어요</li>
+          <li>허위 신고는 신고자도 제재 대상이 될 수 있어요</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="sh">즉시 연락해야 할 상황</h2>
+        <div class="box box-danger">
+          🚨 <strong>즉시 운영진에게 연락하세요</strong><br>
+          · 성희롱·성적 불쾌 발언·신체 접촉<br>
+          · 영업·다단계 등 금지 행위 목격<br>
+          · 귀가 불안 상황<br>
+          · 신체적 위협을 느끼는 상황
+        </div>
+      </div>
+    </div>
+
+    <div class="box box-warn" style="margin-top:8px;">
+      ⚠️ 단톡방에서 공개적으로 문제를 제기하면 처리가 어려워질 수 있어요. 항상 <strong>개별 연락을 먼저</strong> 해주세요.
+    </div>
+  </section>
+
+  <!-- ──── 제재 기준 ──── -->
+  <section class="section" id="sec-sanction">
+    <div class="section-hero">
+      <div class="hero-label">08 · 제재 기준</div>
+      <div class="hero-title">제재 기준 안내</div>
+      <div class="hero-desc">무슨 일이 생기면 어떻게 되는지 미리 알아두세요</div>
+    </div>
+
+    <div class="box box-info">
+      제재는 <strong>사안의 경중·반복성·공동체에 미치는 영향</strong>을 종합적으로 고려하여 운영진이 결정합니다.
+    </div>
+
+    <h2 class="sh">제재 단계</h2>
+    <div class="card">
+      <div class="sanction">
+        <div class="s-badge s1">경고</div>
+        <div class="s-info">
+          <h4>공식 경고 안내</h4>
+          <p>가벼운 규칙 위반 또는 첫 번째 주의. 운영진이 개별 안내. 반복 시 다음 단계 진행.</p>
+        </div>
+      </div>
+      <div class="sanction">
+        <div class="s-badge s1">벌금</div>
+        <div class="s-info">
+          <h4>벌금 부과</h4>
+          <p>당일 취소 3,000원 등 규정에 따른 금액 부과. 미납 시 활동 제한으로 이어질 수 있음.</p>
+        </div>
+      </div>
+      <div class="sanction">
+        <div class="s-badge s2">활동제한</div>
+        <div class="s-info">
+          <h4>일정 기간 이용 제한</h4>
+          <p>특정 기간 행사 참여·신청 제한. 반복 위반, 경고 이후에도 개선 없는 경우 적용.</p>
+        </div>
+      </div>
+      <div class="sanction">
+        <div class="s-badge s4">강퇴</div>
+        <div class="s-info">
+          <h4>강제 퇴장 (강퇴)</h4>
+          <p>노쇼, 즉시 제재 대상 행위 등 중대 위반 시 적용. 퇴장 후 재입학 제한될 수 있음.</p>
+        </div>
+      </div>
+      <div class="sanction">
+        <div class="s-badge s5">영구제한</div>
+        <div class="s-info">
+          <h4>재입학 영구 제한</h4>
+          <p>심각한 반복 위반, 법적 문제 야기, 여놀 신뢰를 중대하게 훼손한 경우. 운영진 회의로 결정.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="g2">
+      <div>
+        <h2 class="sh">즉시 강퇴 (경고 없음)</h2>
+        <ul class="x">
+          <li>노쇼 (무연락 불참)</li>
+          <li>영업·다단계·투자 권유</li>
+          <li>종교 포교</li>
+          <li>성희롱·성적 접촉</li>
+          <li>재학생 간 금전 거래 유도</li>
+          <li>여놀 명의 도용·허위 사실 유포</li>
+          <li>집단 선동·공개 분란 조장</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="sh">가중 제재 기준</h2>
+        <ul class="w">
+          <li>동일 위반 <strong>2회 이상 반복</strong> 시</li>
+          <li>경고 후에도 <strong>행동 변화 없을 때</strong></li>
+          <li>공동체 전체에 <strong>영향이 큰 사안</strong></li>
+          <li>고의성이 명확한 경우</li>
+        </ul>
+        <div class="box box-info" style="margin-top:12px;">
+          📌 제재는 당사자에게 개별 통보됩니다. 이의가 있는 경우 카카오채널을 통해 소명할 수 있으나, 최종 판단은 운영진에게 있습니다.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── 안전 안내 ──── -->
+  <section class="section" id="sec-safety">
+    <div class="section-hero">
+      <div class="hero-label">09 · 안전 안내</div>
+      <div class="hero-title">안전 안내</div>
+      <div class="hero-desc">여놀은 오프라인 커뮤니티입니다 — 나와 다른 재학생의 안전이 최우선이에요</div>
+    </div>
+
+    <div class="g2">
+      <div>
+        <h2 class="sh">모임 참여 시 기본 안전</h2>
+        <ul class="chk">
+          <li>운영진의 안내와 안전 수칙 우선 준수</li>
+          <li>귀가 시 안전 경로 미리 확인</li>
+          <li>늦은 시간 귀가 시 지인에게 위치 공유 권장</li>
+          <li>술자리 후 대리운전·택시 이용 권장</li>
+          <li>불편하거나 위험하다 느끼면 그 자리를 벗어나도 됩니다</li>
+        </ul>
+
+        <h2 class="sh" style="margin-top:20px;">개인정보 보호</h2>
+        <ul class="dot">
+          <li>공식 카톡방에서 전화번호·카카오ID·인스타ID 공유 금지</li>
+          <li>개인 연락처는 <strong>오프라인에서 직접 교환</strong></li>
+          <li>타인의 개인정보를 동의 없이 공유하지 않기</li>
+          <li>모임에서 찍은 사진은 당사자 동의 후 개인 SNS에 올리기</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="sh">불쾌 · 위험한 상황</h2>
+        <div class="box box-danger">
+          🚨 <strong>이런 상황이면 즉시 운영진에게 연락하세요</strong><br><br>
+          · 성희롱·성적 발언·신체 접촉<br>
+          · 과도한 구애·스토킹 의심<br>
+          · 다단계·투자·영업 접근<br>
+          · 신체적 위협을 느끼는 상황<br>
+          · 귀가가 불안한 상황
+        </div>
+
+        <h2 class="sh" style="margin-top:20px;">음주 관련</h2>
+        <ul class="dot">
+          <li>과도한 음주로 타인에게 불쾌감·위협을 주면 제재 대상</li>
+          <li>본인의 음주 상태 관리는 본인 책임</li>
+          <li>주변에 과음하는 재학생이 있다면 귀가를 도와주세요</li>
+        </ul>
+
+        <h2 class="sh" style="margin-top:20px;">사고 발생 시</h2>
+        <ul class="dot">
+          <li>공식 행사 중 사고: <strong>즉시 운영진에게 연락</strong></li>
+          <li>긴급 상황: 119/112 신고 후 운영진에게 알리기</li>
+          <li>벙 중 사고: 주최자 책임 (여놀 관여 불가)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──── FAQ ──── -->
+  <section class="section" id="sec-faq">
+    <div class="section-hero">
+      <div class="hero-label">10 · FAQ</div>
+      <div class="hero-title">자주 묻는 질문</div>
+      <div class="hero-desc">궁금한 게 있을 때 여기를 먼저 확인해보세요</div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">벙은 어디서 열 수 있나요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">대나무숲 광장에서 개설할 수 있어요. 벙 여는 방법은 대나무숲 AI봇 프로필을 참고해주세요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">학부방 퇴장하면 어떻게 되나요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">즉시 휴학생으로 전환되며 모든 여놀 활동이 금지됩니다. 복학을 원하면 운영진에게 연락해주세요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">공식 행사와 벙의 차이는 뭔가요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">공식 행사는 여놀 운영진이 주최·책임지며, 참가비는 실제 발생 비용(장소·식비 등)만 N빵입니다. 벙은 재학생 개인이 주최하고 책임지며 여놀은 관여하지 않아요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">당일 취소 벌금은 어디에 내나요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">카카오채널 [여놀]에서 계좌 안내를 받고 3일 이내에 이체해주세요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">노쇼하면 정말 바로 강퇴인가요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">네. 무연락 불참은 즉시 강퇴입니다. 예외는 없어요. 어떤 상황이든 꼭 미리 연락해주세요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">외부 친구를 모임에 데려와도 되나요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">공식 행사는 재학생 전용이라 외부인 동반이 불가합니다. 개인 벙은 주최자 판단이나 안전 책임은 주최자에게 있어요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">단체 사진 삭제 요청이 가능한가요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">단체 사진은 개별 요청만으로 삭제되지 않아요. 부득이한 사정이 있다면 사전에 운영진과 협의해주세요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">NOL은 현금으로 돌려받을 수 있나요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">아니요. NOL은 현금 환급·전환·양도가 절대 불가합니다. 여놀 내부에서만 사용할 수 있어요.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">타 커뮤니티에서 활동해도 되나요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">활동 자체는 가능해요. 다만 여놀 내에서 해당 모임을 홍보·모집하거나, 여놀을 타 모임 운영 수단으로 활용하는 건 안 됩니다.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q" onclick="toggleFaq(this)">신고나 불편 사항은 어디에 접수하나요?<span class="faq-arrow">▼</span></div>
+      <div class="faq-a">카카오채널 [여놀] 또는 학부방 상위공지 총장실로 접수해주세요. 증빙 자료(캡처 등)가 있으면 함께 보내주시면 더 빠르게 처리됩니다.</div>
+    </div>
+  </section>
+
+  <!-- ──── 요약 ──── -->
+  <section class="section" id="sec-summary">
+    <div class="section-hero">
+      <div class="hero-label">★ · 핵심 요약</div>
+      <div class="hero-title">핵심 요약 한 장</div>
+      <div class="hero-desc">이 한 장만 기억해도 여놀 생활에 문제없어요</div>
+    </div>
+
+    <div class="sum-grid">
+      <div class="sum-box">
+        <div class="sum-head">✅ 기본 이용 수칙</div>
+        <div class="sum-body"><ul>
+          <li>존중·배려·안전이 기본 가치</li>
+          <li>카톡방에서 개인정보 공유 금지</li>
+          <li>불만은 단톡방 공개 표출 금지 → 운영진 개별 연락</li>
+          <li>내부 사진·정보 외부 유출 금지</li>
+          <li>정치·종교·이념 강요 금지</li>
+        </ul></div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-head">🚨 즉시 강퇴 행위</div>
+        <div class="sum-body"><ul>
+          <li>노쇼 (무연락 불참)</li>
+          <li>영업·다단계·투자 권유·종교 포교</li>
+          <li>연애 목적 접근·성희롱·금전 거래</li>
+          <li>여놀 내 타 모임 홍보·모집</li>
+          <li>집단 선동·명예훼손·명의 도용</li>
+        </ul></div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-head">📅 취소 · 노쇼 · 벌금</div>
+        <div class="sum-body"><ul>
+          <li>당일 취소: 벌금 3,000원</li>
+          <li>노쇼 (무연락): 즉시 강퇴</li>
+          <li>반복 당일 취소 (2회↑): 추가 제재</li>
+          <li>벌금: 카카오채널 [여놀] → 3일 이내</li>
+        </ul></div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-head">💛 NOL 크레딧</div>
+        <div class="sum-body"><ul>
+          <li>입학 시 3,000 NOL 지급</li>
+          <li>행사 후기 작성 시 1,000 NOL</li>
+          <li>지인 추천 입학 시 2,000 NOL</li>
+          <li>현금 환급·전환·양도 절대 불가</li>
+          <li>휴학·자퇴 시 자동 소멸</li>
+        </ul></div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-head">🏛 공식행사 vs 벙</div>
+        <div class="sum-body"><ul>
+          <li>공식 행사 = 운영진 주최·관리·책임</li>
+          <li>공식 행사 참가비 = 실제 발생 비용만 N빵</li>
+          <li>벙 = 재학생 개인 주최·책임</li>
+          <li>벙 개설: 대나무숲 광장 (AI봇 참고)</li>
+          <li>공식 행사 동시 시간대 벙 개설 금지</li>
+        </ul></div>
+      </div>
+      <div class="sum-box">
+        <div class="sum-head">📞 문의 창구</div>
+        <div class="sum-body"><ul>
+          <li>일반 문의 → 카카오채널 [여놀]</li>
+          <li>불편·위반 신고 → 카카오채널 [여놀] 또는 학부방 상위공지 총장실</li>
+          <li>위험·긴급 상황 → 즉시 운영진 연락</li>
+          <li>공식 회칙 전문 → 네이버 공식 카페</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="box box-dark" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:10px;color:var(--gold);font-weight:700;letter-spacing:2px;margin-bottom:4px;">문서 우선 서열</div>
+        <div style="font-size:14px;font-weight:700;color:#fff;">여놀 기본 회칙 &gt; 재학생 가이드북 &gt; 학부방 공지</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:2px;">변경 시 학부방 공지가 우선 적용됩니다</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.4);">ver 1.0 · 2026.03.16</div>
+        <div style="font-size:15px;color:var(--gold);font-weight:700;margin-top:2px;">YEONOL 🌿</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const titles = {
+  home: '홈 · 안내문',
+  intro: '여놀 소개 & 용어',
+  space: '공간 이용 안내',
+  rules: '기본 이용 수칙',
+  events: '행사 · 벙 · 유료 프로그램',
+  cancel: '취소 · 노쇼 · 벌금',
+  nol: 'NOL 크레딧',
+  contact: '신고 · 문의 · 민원',
+  sanction: '제재 기준',
+  safety: '안전 안내',
+  faq: '자주 묻는 질문 (FAQ)',
+  summary: '핵심 요약 한 장'
+};
+
+function show(id) {
+  // hide all
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+  // show target
+  document.getElementById('sec-' + id).classList.add('active');
+
+  // active nav
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') === `show('${id}')`) n.classList.add('active');
+  });
+
+  // update topbar
+  document.getElementById('topbarTitle').innerHTML = titles[id] + ' <span>여놀 재학생 가이드북</span>';
+
+  // scroll to top
+  document.querySelector('.main').scrollTo(0, 0);
+  window.scrollTo(0, 0);
+
+  // close mobile
+  closeMobile();
+}
+
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  const ans = el.nextElementSibling;
+  ans.classList.toggle('open');
+}
+
+function toggleMobile() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+</script>
+</body>
+</html>
